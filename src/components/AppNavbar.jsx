@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react"
+import { useSelector } from "react-redux"
 import { Link } from "react-router"
 
 // Avtar with darpdown menu
@@ -53,6 +54,8 @@ const AvatarMenue = () => {
 }
 
 export default function AppNavbar() {
+
+    const count = useSelector((state) => state.counter.value)
 
     const [state, setState] = useState(false)
 
@@ -117,6 +120,7 @@ export default function AppNavbar() {
                                 />
                             </div>
                         </form>
+                        <li className="px-2 rounded-lg bg-red-700 text-white font-bold">{count}</li>
                         {
                             navigation.map((item, idx) => {
                                 return (

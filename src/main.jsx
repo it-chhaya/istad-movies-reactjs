@@ -6,6 +6,9 @@ import MainLayout from './layouts/MainLayout.jsx'
 import Home from './pages/Home.jsx'
 import People from './pages/People.jsx'
 import Error from './pages/Error.jsx'
+import LogIn from './pages/LogIn.jsx'
+import { Provider } from 'react-redux'
+import { store } from './store.js'
 
 const router = createBrowserRouter(
   [
@@ -23,12 +26,18 @@ const router = createBrowserRouter(
         },
       ],
       errorElement: <Error/>
+    },
+    {
+      path: "/login",
+      element: <LogIn/>
     }
   ]
 )
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <RouterProvider router={router}/>
+    <Provider store={store}>
+      <RouterProvider router={router}/>
+    </Provider>
   </StrictMode>,
 )
