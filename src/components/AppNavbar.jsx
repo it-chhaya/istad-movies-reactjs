@@ -56,6 +56,7 @@ const AvatarMenue = () => {
 export default function AppNavbar() {
 
     const count = useSelector((state) => state.counter.value)
+    const isAuthenticated = useSelector(state => state.auth.isAuthenticated)
 
     const [state, setState] = useState(false)
 
@@ -132,7 +133,15 @@ export default function AppNavbar() {
                                 )
                             })
                         }
-                        <AvatarMenue />
+                        {
+                            isAuthenticated && isAuthenticated ? (
+                                <AvatarMenue />
+                            ) : (<li>
+                                <Link to='/login' className="block text-gray-700 hover:text-gray-900">
+                                    Log in
+                                </Link>
+                            </li>)
+                        }
                     </ul>
                 </div>
             </div>
