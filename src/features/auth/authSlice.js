@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { login } from "./authAction";
+import { login, getProfile } from "./authAction";
 
 const initialState = {
     isAuthenticated: false,
@@ -30,7 +30,16 @@ const authSlice = createSlice({
                 state.isAuthenticated = false
                 console.log('rejected ', action.error)
             })
-
+            .addCase(getProfile.pending, (state, action) => {
+                // TODO
+            })
+            .addCase(getProfile.fulfilled, (state, action) => {
+                state.profile = action.payload
+                state.isAuthenticated = true
+            })
+            .addCase(getProfile.rejected, (state, action) => {
+                state.profile = null
+            })
     }
 })
 

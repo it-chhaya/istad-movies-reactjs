@@ -11,9 +11,15 @@ export default function Home() {
 
     const { data, status } = useSelector((state) => state.movie)
 
+    const { isAuthenticated, accessToken } = useSelector(state => state.auth)
+
 
     useEffect(() => {
         dispatch(fetchMovies())
+
+        console.log('isAuthenticated ', isAuthenticated)
+        console.log('accessToken ', accessToken)
+
     }, [])
 
 
